@@ -1,2 +1,2 @@
-# VSHP_DataBase
-Here is my coursework from 3rd year of study
+# Video Hosting Data Base
+Database for video hosting taking into account user, channel, videos and playlists
