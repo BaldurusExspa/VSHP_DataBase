@@ -20,3 +20,25 @@ JOIN channels ON playlists.channels_id = channels.id
 WHERE channels.name LIKE 'Channel 1' and playlists.availability = 'public'
 GROUP BY playlists.name;
 ```
+**3. Select number of users created on 2023 year**
+```sql
+SELECT COUNT(users.id) AS 'Users'
+FROM users
+WHERE users.created_datе <= '2023-01-01';
+```
+**4. Select likes from all channels and order by most likes**
+```sql
+SELECT channels.name, COUNT(likes.id) AS 'Video_likes'
+FROM likes
+JOIN channels ON likes.channels_id = channels.id
+JOIN videos ON likes.videos_id = videos.id
+GROUP BY channels.name
+ORDER BY 'Video_likes' ASC;
+```
+**5. Select username who created the channel**
+```sql
+SELECT users.username, channels.name
+FROM users
+JOIN channels ON channels.users_id = users.id
+WHERE channels.id > 0 || channels.id != 0;
+```
