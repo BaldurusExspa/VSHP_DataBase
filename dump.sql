@@ -33,7 +33,7 @@ CREATE TABLE `channels` (
   PRIMARY KEY (`id`),
   KEY `fk_channels_users1_idx` (`users_id`),
   CONSTRAINT `fk_channels_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,9 +42,26 @@ CREATE TABLE `channels` (
 
 LOCK TABLES `channels` WRITE;
 /*!40000 ALTER TABLE `channels` DISABLE KEYS */;
-INSERT INTO `channels` VALUES (1,'Channel 1','2023-01-01 00:00:00','https://example.com/channel1','https://link.to/channel1','Описание канала 1',1),(2,'Channel 2','2023-01-02 00:00:00','https://example.com/channel2','https://link.to/channel2','Описание канала 2',2),(3,'Channel 10','2023-12-31 23:59:59','https://example.com/channel10','https://link.to/channel10','Описание канала 10',3);
+INSERT INTO `channels` VALUES (1,'Channel 1','2023-01-01 00:00:00','https://example.com/channel1','https://link.to/channel1','Описание канала 1',1),(2,'Channel 2','2023-01-02 00:00:00','https://example.com/channel2','https://link.to/channel2','Описание канала 2',2),(3,'Channel 10','2023-12-31 23:59:59','https://example.com/channel10','https://link.to/channel10','Описание канала 10',3),(4,'Channel','2024-01-01 00:00:00','some url','some url','Бывает',4);
 /*!40000 ALTER TABLE `channels` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `channelstatistics`
+--
+
+DROP TABLE IF EXISTS `channelstatistics`;
+/*!50001 DROP VIEW IF EXISTS `channelstatistics`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `channelstatistics` AS SELECT 
+ 1 AS `channel_id`,
+ 1 AS `channel_name`,
+ 1 AS `create_date`,
+ 1 AS `total_videos`,
+ 1 AS `total_comments`,
+ 1 AS `total_likes`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `comments`
@@ -73,7 +90,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,'2023-01-15','This is the first comment on video 1',1,1),(2,'2023-02-20','This is the second comment on video 2',2,2),(3,'2023-03-25','This is the third comment on video 3',3,3);
+INSERT INTO `comments` VALUES (1,'2023-01-01','HahHahahahAHhaH',1,1),(2,'2024-05-06','Phpphpphpphpphpphpphp',2,2),(3,'2024-03-02','This is a comment for video 3',3,3);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +119,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (1,1,1),(2,2,2),(3,3,3);
+INSERT INTO `likes` VALUES (1,1,1),(2,2,2),(3,3,3),(4,5,1),(5,5,1);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +148,7 @@ CREATE TABLE `playlists` (
 
 LOCK TABLES `playlists` WRITE;
 /*!40000 ALTER TABLE `playlists` DISABLE KEYS */;
-INSERT INTO `playlists` VALUES (1,'Playlist 1','This is the description for Playlist 1','public',1),(2,'Playlist 2','This is the description for Playlist 2','closed',2),(3,'Playlist 3','This is the description for Playlist 3','link',3);
+INSERT INTO `playlists` VALUES (1,'Playlist 1','This is the description for Playlist 1','public',1),(2,'Playlist 2','This is the description for Playlist 2','closed',2),(3,'Playlist 3','This is the description for Playlist 3','link',3),(4,'Playlist num 4','Some decs','public',1),(5,'HahLo','Some decsr','link',1);
 /*!40000 ALTER TABLE `playlists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +231,7 @@ CREATE TABLE `videos` (
 
 LOCK TABLES `videos` WRITE;
 /*!40000 ALTER TABLE `videos` DISABLE KEYS */;
-INSERT INTO `videos` VALUES (1,'Video 1','This is a description for Video 1','http://example.com/video1',1),(2,'Video 2','This is a description for Video 2','http://example.com/video2',2),(3,'Video 3','This is a description for Video 3','http://example.com/video3',3);
+INSERT INTO `videos` VALUES (1,'Video 1','This is a description for Video 1','http://example.com/video1',1),(2,'Video 2','This is a description for Video 2','http://example.com/video2',2),(3,'Video 3','This is a description for Video 3','http://example.com/video3',3),(4,'Video 4','Some decs','Some url',1),(5,'Vedeo 5','Some decsr','Some urls',1);
 /*!40000 ALTER TABLE `videos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,9 +259,27 @@ CREATE TABLE `videos_has_playlists` (
 
 LOCK TABLES `videos_has_playlists` WRITE;
 /*!40000 ALTER TABLE `videos_has_playlists` DISABLE KEYS */;
-INSERT INTO `videos_has_playlists` VALUES (1,1),(2,2),(3,3);
+INSERT INTO `videos_has_playlists` VALUES (1,1),(2,2),(3,3),(4,4),(5,5);
 /*!40000 ALTER TABLE `videos_has_playlists` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `channelstatistics`
+--
+
+/*!50001 DROP VIEW IF EXISTS `channelstatistics`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `channelstatistics` AS select `channels`.`id` AS `channel_id`,`channels`.`name` AS `channel_name`,`channels`.`create_date` AS `create_date`,count(distinct `videos`.`id`) AS `total_videos`,count(distinct `comments`.`id`) AS `total_comments`,count(distinct `likes`.`id`) AS `total_likes` from (((`channels` left join `videos` on((`channels`.`id` = `videos`.`channels_id`))) left join `comments` on((`channels`.`id` = `comments`.`channels_id`))) left join `likes` on((`channels`.`id` = `likes`.`channels_id`))) group by `channels`.`id`,`channels`.`name`,`channels`.`create_date` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -255,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-07 16:23:34
+-- Dump completed on 2024-06-10 17:56:16
